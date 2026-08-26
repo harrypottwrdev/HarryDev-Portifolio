@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bernardo Campos — Desenvolvedor Front-end e Back-End</title>
+<meta name="description" content="Portfólio de Lorenzo Cerbasi, desenvolvedor front-end especializado em interfaces digitais, websites, aplicativos e dashboards responsivos.">
+<style>
+  :root{
+    --bg: #0a0a0a;
+    --card: #141414;
+    --border: rgba(255,255,255,.1);
+    --text: #fff;
+    --text-muted: rgba(255,255,255,.55);
+    --accent: #ff6c0a;
+    --radius: 24px;
+    --max: 1080px;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family: "Satoshi", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height:1.4;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; text-decoration:none; }
+  section{ padding:64px 24px; max-width:var(--max); margin:0 auto; }
+  h1,h2,h3{ font-weight:500; letter-spacing:-0.02em; }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:10;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 24px; max-width:var(--max); margin:0 auto;
+  }
+  .logo{ width:36px; height:auto; }
+  nav ul{ list-style:none; display:flex; gap:8px; }
+  nav a{
+    padding:12px 14px; font-size:14px; color:var(--text-muted);
+    border-radius:8px; transition:color .2s;
+  }
+  nav a:hover{ color:var(--text); }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--card); border:1px solid var(--border);
+    color:#fff; padding:12px 20px; border-radius:999px;
+    font-size:14px; font-weight:500; white-space:nowrap;
+    transition:background .2s;
+  }
+  .btn:hover{ background:#1c1c1c; }
+
+  /* ---------- Hero ---------- */
+  .hero{ text-align:center; padding-top:48px; }
+  .avatar{
+    width:108px; height:108px; border-radius:24px; overflow:hidden;
+    margin:0 auto 24px;
+  }
+  .avatar img{ width:100%; height:100%; object-fit:cover; }
+  .hero h1{
+    font-size:clamp(32px,5vw,46px);
+    background:radial-gradient(80% 150% at 45% 15%, #fff 0%, rgba(180,195,204,0) 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    margin-bottom:16px;
+  }
+  .hero p{ color:var(--text-muted); font-size:18px; max-width:600px; margin:0 auto 32px; }
+
+  /* ---------- Tech ticker ---------- */
+  .ticker-track{
+    display:flex; gap:24px; overflow-x:auto; padding:16px 4px;
+    -ms-overflow-style:none; scrollbar-width:none;
+  }
+  .ticker-track::-webkit-scrollbar{ display:none; }
+
+  /* Ícones 3D: badge com perspectiva, gradiente e sombra elevada */
+  .ticker-track{ perspective:600px; padding:24px 4px; }
+  .tech-icon{
+    --c1: #3a3a3a; --c2: #0a0a0a;
+    flex:none; width:72px; height:72px; border-radius:18px;
+    background:linear-gradient(160deg, var(--c1) 0%, var(--c2) 70%);
+    box-shadow:
+      0 1px 0 rgba(255,255,255,.15) inset,
+      0 -6px 12px rgba(0,0,0,.5) inset,
+      0 12px 20px rgba(0,0,0,.45);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:4px; color:#fff; text-align:center;
+    transform:rotateX(8deg) rotateY(-8deg);
+    transform-style:preserve-3d;
+    transition:transform .35s ease, box-shadow .35s ease;
+  }
+  .tech-icon:hover{
+    transform:rotateX(0deg) rotateY(0deg) translateY(-4px) scale(1.05);
+    box-shadow:
+      0 1px 0 rgba(255,255,255,.2) inset,
+      0 -6px 12px rgba(0,0,0,.5) inset,
+      0 18px 28px rgba(0,0,0,.55);
+  }
+  .tech-icon svg{ width:28px; height:28px; filter:drop-shadow(0 2px 2px rgba(0,0,0,.4)); }
+  .tech-icon span{ font-size:9px; font-weight:500; color:rgba(255,255,255,.7); letter-spacing:.02em; }
+
+  /* ---------- Case studies ---------- */
+  .cases{ display:flex; flex-direction:column; gap:24px; }
+  .case-card{
+    display:flex; gap:24px; align-items:center;
+    background:var(--card); border:1px solid var(--border);
+    border-radius:var(--radius); padding:40px; overflow:hidden;
+  }
+  .case-content{ flex:1; display:flex; flex-direction:column; gap:24px; }
+  .case-content h3{ font-size:30px; margin-bottom:8px; }
+  .case-content p{ color:var(--text-muted); font-size:18px; }
+  .case-image{ flex:1; border-radius:8px; overflow:hidden; aspect-ratio:16/9; }
+  .case-image img{ width:100%; height:100%; object-fit:cover; }
+
+  @media (max-width:800px){
+    .case-card{ flex-direction:column; }
+  }
+
+  /* ---------- About ---------- */
+  .about{ text-align:center; }
+  .about p{ font-size:24px; line-height:1.5; max-width:640px; margin:0 auto; }
+  .pill{
+    display:inline-flex; align-items:center; padding:6px 18px;
+    border-radius:999px; background:#000; border:1px solid #3c3f44;
+    color:#adb1b8; font-size:20px; margin:0 4px;
+  }
+
+  /* ---------- Skills ---------- */
+  .section-title{
+    display:flex; align-items:center; gap:12px; margin-bottom:24px;
+  }
+  .dot{ width:10px; height:10px; border-radius:50%; background:var(--accent); }
+  .skills-grid{ display:flex; flex-wrap:wrap; gap:12px; }
+  .skill-tag{
+    padding:8px 12px; border-radius:8px; background:var(--card);
+    border:1px solid var(--border); font-size:14px; color:rgba(255,255,255,.75);
+  }
+
+  /* ---------- Experience ---------- */
+  .experience-list{ display:flex; flex-direction:column; }
+  .experience-item{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    gap:16px; padding:24px 0; border-bottom:1px solid var(--border);
+    flex-wrap:wrap;
+  }
+  .experience-item:last-child{ border-bottom:none; }
+  .experience-role{ font-size:24px; flex:1; min-width:220px; }
+  .experience-meta{ text-align:right; }
+  .experience-meta .company{ font-size:18px; color:var(--text-muted); }
+  .experience-meta .dates{ font-size:14px; color:rgba(209,218,224,.5); }
+
+  /* ---------- Footer ---------- */
+  footer{
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:16px; padding:32px 24px; max-width:var(--max);
+    margin:0 auto; font-size:14px; color:var(--text-muted);
+  }
+  footer .links{ display:flex; gap:24px; flex-wrap:wrap; }
+  footer a:hover{ color:#fff; }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="#top" aria-label="Início">
+    <svg class="logo" viewBox="0 0 42 34" xmlns="http://www.w3.org/2000/svg">
+      <path d="M37.113 0H21.6l-5.694 11.282h10.8c.982 0 1.767.31 2.553.927.589.464.982 1.237.982 1.855 0 .463-.197.773-.393 1.082L37.31.464C37.506.31 37.506.154 37.31.154 37.31 0 37.113 0 37.113 0Z" fill="#fff" opacity=".8"/>
+      <path d="M41.63 22.718H26.706c-.197 0-.197-.155-.393-.155v-.31l3.535-6.953v-.154c.196-.31.393-.619.393-1.082.004-.74-.367-1.45-1.031-1.972-.664-.523-1.566-.815-2.504-.812H15.906L4.517 33.536c0 .155 0 .309.196.309 0 .155.196.155.196.155h31.222c.197 0 .197 0 .393-.155l5.302-10.818c.196 0 .196-.155 0-.309h-.196Z" fill="#fff"/>
+      <path d="M5.891 0c-.196 0-.393 0-.393.155L0 10.973v.309h15.906L21.6 0H5.891Z" fill="#fff" opacity=".4"/>
+    </svg>
+  </a>
+  <nav>
+    <ul>
+      <li><a href="#top">Home</a></li>
+      <li><a href="#case-study">Projetos</a></li>
+      <li><a href="#about">Sobre mim</a></li>
+      <li><a href="#skills">Tecnologias</a></li>
+      <li><a href="#experience">Experiências</a></li>
+    </ul>
+  </nav>
+  <a class="btn" href="https://wa.me/558392245265" target="_blank" rel="noopener">Entrar em contato</a>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="avatar">
+  
+    </div>
+    <h1>Bernardo<br>Desenvolvedor Front-end e Back-End</h1>
+    <p>Desenvolvedor Front-end com 5+ anos de experiência conectando pessoas e tecnologia através de interfaces modernas, e Desenvolvedor de software pleno com experiência em back-end, atuando principalmente com Node.js, Java e Python na construção de APIs e sistemas escaláveis. Também tenho vivência em front-end com React, HTML, CSS e JavaScript, e utilizo Git/GitHub no dia a dia para versionamento e colaboração em equipe..</p>
+    <a class="btn" href="https://wa.me/5519995462615" target="_blank" rel="noopener">Entrar em contato</a>
+  </section>
+
+  <section aria-label="Tecnologias em destaque">
+    <div class="ticker-track">
+      <div class="tech-icon" style="--c1:#4b8bbe;--c2:#2b5f83">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2c-3 0-5 1-5 4v2h5v1H5c-2 0-3 1.5-3 5s1 5 3 5h2v-3c0-2 1.5-4 4-4h4c2 0 3-1.5 3-3V6c0-2.5-2-4-5-4h-1z" fill="#fff"/><circle cx="9" cy="4.5" r="1" fill="#2b5f83"/><circle cx="15" cy="19.5" r="1" fill="#2b5f83"/></svg>
+        <span>Python</span>
+      </div>
+      <div class="tech-icon" style="--c1:#3b4b58;--c2:#0d1b24">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2.4" fill="#61dafb"/><g stroke="#61dafb" stroke-width="1.2" fill="none"><ellipse cx="12" cy="12" rx="10" ry="4"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"/></g></svg>
+        <span>React</span>
+      </div>
+      <div class="tech-icon" style="--c1:#2b2136;--c2:#0c0012">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 3 21 7v10l-9 4-9-4V7l9-4Z" fill="#3982ce"/><path d="M12 3v18M3 7l18 10M21 7 3 17" stroke="#0c0012" stroke-width=".6"/></svg>
+        <span>Java</span>
+      </div>
+      <div class="tech-icon" style="--c1:#2f5f9e;--c2:#153157">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" fill="#3178c6"/><text x="12" y="16" font-size="9" font-weight="700" fill="#fff" text-anchor="middle">TS</text></svg>
+        <span>TypeScript</span>
+      </div>
+      <div class="tech-icon" style="--c1:#3a72c4;--c2:#173b6e">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M6 4c4-2 8-2 12 1-2 6-6 10-12 15-2-5-2-11 0-16Z" fill="#54c5f8"/></svg>
+        <span>Java Script</span>
+      </div>
+      <div class="tech-icon" style="--c1:#3a3a3a;--c2:#0a0a0a">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#fff"/><path d="M8 8v9M8 8l9 9M16 8v9" stroke="#0a0a0a" stroke-width="1.6" fill="none"/></svg>
+        <span>Next.js</span>
+      </div>
+      <div class="tech-icon" style="--c1:#2e6b7e;--c2:#123542">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M6 9c1-3 3-4 6-4 3 0 4 2 5 3-1-.5-2-.7-3 0-1 .8-1.5 2-3 2-2 0-3-1.5-5-1Zm0 6c1-3 3-4 6-4 3 0 4 2 5 3-1-.5-2-.7-3 0-1 .8-1.5 2-3 2-2 0-3-1.5-5-1Z" fill="#38bdf8"/></svg>
+        <span>Html e CSS</span>
+      </div>
+      <div class="tech-icon" style="--c1:#3a5a3a;--c2:#132313">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2 21 7v10l-9 5-9-5V7l9-5Z" fill="#68a063"/></svg>
+        <span>Node.js</span>
+      </div>
+      <div class="tech-icon" style="--c1:#5a2b2b;--c2:#280d0d">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#e0234e"/><text x="12" y="16" font-size="9" font-weight="700" fill="#fff" text-anchor="middle">N</text></svg>
+        <span>NestJS</span>
+      </div>
+      
+  
+      </div>
+    </div>
+  </section>
+
+  <section id="case-study" class="cases">
+    <article class="case-card">
+      <div class="case-content">
+        <div>
+          <h3>Desenvolvedor Front-end</h3>
+          <p>
+
+HTML e CSS: estruturação semântica e estilização de páginas web, incluindo responsividade e boas práticas de layout.
+JavaScript: lógica de programação para o navegador, manipulação de DOM, requisições assíncronas e integração com APIs.
+React: construção de interfaces componentizadas, gerenciamento de estado, hooks e ciclo de vida de componentes.
+</p>
+    <article class="case-card">
+      <div class="case-content">
+        <div>
+          <h3>Back-End</h3>
+          <p>
+
+Java: desenvolvimento orientado a objetos, aplicações robustas e sistemas corporativos.
+Node.js: construção de APIs e serviços back-end usando JavaScript no servidor, com ecossistema npm.
+Python: linguagem versátil usada em automação, scripts, back-end e análise de dados.
+
+Controle de versão e colaboração
+
+Git: versionamento de código, branches, merges e resolução de conflitos.
+GitHub: hospedagem de repositórios, pull requests, code review e fluxos de trabalho colaborativos (Git flow, CI/CD básico). </p>
+        </div>
+        <a class="btn" href="https://harrypottwrdev.github.io/Langaunge-Pro/login.html" target="_blank" rel="Langaunge-Pro">Ver mais</a>
+      </div>
+      <div class="case-image">
+        <img src="language_pro_banner.png" alt="Imovibe">
+      </div>
+    </article>
+
+    <article class="case-card">
+      <div class="case-content">
+        <div>
+          <h3>Portal Imóveis &amp; Cia</h3>
+          <p>O aplicativo da Portal Imóveis &amp; Cia complementa o sistema web já existente, permitindo que clientes e corretores acessem imóveis em tempo real, façam buscas avançadas e salvem favoritos, ampliando o alcance da empresa no mobile.</p>
+        </div>
+        <a class="btn" href="https://harrypottwrdev.github.io/Bella-Napoli/" target="_blank">Ver mais</a>
+      <a/div>
+      <div class="case-image">
+        <img src="bella_napoli_banner (1).png" alt="Portal Imóveis & Cia">
+      </div>
+    </article>
+  </section>
+
+  <section id="about" class="about">
+    <p>
+      Desenvolvedor e especialista em <span class="pill">Front-end</span>
+      com mais de <span class="pill">5 anos</span> de experiência no mercado.
+      A expertise abrange <span class="pill">Websites, Apps e Dashboards</span>
+      permitindo a criação de projetos altamente responsivos.
+      Atualmente meu foco é garantir a melhor <span class="pill">Experiência do Usuário (UX)</span>
+      com entregas ágeis e de extrema qualidade.
+    </p>
+  </section>
+
+  <section id="skills">
+    <div class="section-title">
+      <span class="dot"></span>
+      <h2>Tecnologias</h2>
+    </div>
+    <div class="skills-grid">
+      <span class="skill-tag">React</span>
+      <span class="skill-tag">Next.js</span>
+      <span class="skill-tag">TypeScript</span>
+      <span class="skill-tag">Html e CSS</span>
+      <span class="skill-tag">Java</span>
+      <span class="skill-tag">JavaScript</span>
+      <span class="skill-tag">React Query</span>
+      <span class="skill-tag">React Native</span>
+      <span class="skill-tag">Node.js</span>
+      <span class="skill-tag">NestJS</span>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="section-title">
+      <span class="dot"></span>
+      <h2>Experiências</h2>
+    </div>
+    <div class="experience-list">
+      <div class="experience-item">
+        <span class="experience-role">Desenvolvedor Full-stack — Pleno</span>
+        <span class="experience-meta"></span>
+        </span>
+      </div>
+      <div class="experience-item">
+        <span class="experience-role">Desenvolvedor Front-end — Junior/Pleno</span>
+        <span class="experience-meta">
+        </span>
+      </div>
+      <div class="experience-item">
+        <span class="experience-role">Desenvolvedor Full-stack — Junior</span>
+        <span class="experience-meta">
+        
+        </span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>© 2026 Bernardo Campos. Todos os direitos reservados.</span>
+  <div class="links">
+    <a href="https://github.com/harrypottwrdev" target="_blank" rel="noopener">GitHub</a>
+    <a href="harrypottwrdev@gmailcom"target="_blank" rel="noopener">E-mail</a>
+    <a href="https://wa.me/558392245265" target="_blank" rel="noopener">WhatsApp</a>
+    <a href="https://www.instagram.com/HarryPottwrDev" target="_blank" rel="noopener">Instagram</a>
+  </div>
+</footer>
+
+</body>
+</html>
